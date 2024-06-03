@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;    
+            background-color: #333333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+        
+        #calculator {
+            background-color: #F5F5F5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+    
+    /* Calculate Button */
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #000000;
+        }
+        button:active{
+            background-color: red;
+            color: black;
+            font-weight: bolder;
+        }
+
+    /* Price Calculator */
+        h2{
+            background-color: #333333;
+            color: white;
+            border-radius: 15px;
+        }
+
+    /* Total Amount: Rs */
+        h3{
+            background-color: #333333; 
+            color: #fff;
+            border-radius: 50%;
+        }
+
+    /* Enter Price (Void Space) Starts From ELement Space */
+        .space{
+            font-weight: bold;
+            transition: 1s;
+        }
+        .space:hover{
+            background-color: #F5F5F5;  
+            box-shadow: 2px 2px 8px black;        
+        }
+        .space:active{
+            border: 2px solid black;
+            background-color: red;
+            color: whitesmoke;
+        }
+
+    /* Price Per KG, Weight in Grams, Discount Percentage, Discount in Rupees */
+        .heading{
+            background-color: rgba(255, 255, 255, 0.8) ;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            color: #333333;
+            box-shadow: 1px 1px 0px rgb(255, 0, 0);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h2>Price Calculator</h2>
+        
+        <label for="price" class="heading">Price per kg (in Rs):</label>
+        <input type="number" id="price" placeholder="Enter price per kg" required class="space">
+        
+        <label for="grams" class="heading">Weight in Kilograms:</label>
+        <input type="number" id="grams" placeholder="Enter weight in grams" required class="space">
+        
+        <label for="discountPercentage" class="heading">Discount Percentage:</label>
+        <input type="number" id="discountPercentage" placeholder="Enter discount percentage" class="space">
+        
+        <label for="discountRupees" class="heading">Discount in Rupees:</label>
+        <input type="number" id="discountRupees" placeholder="Enter discount in Rupees" class="space">
+        
+        <button onclick="calculateTotal()">Calculate</button>
+        
+        <h3 id="totalAmount"></h3>
+        
+        <script>
+            function calculateTotal() {
+                var price = parseFloat(document.getElementById('price').value) || 0;
+                var grams = parseFloat(document.getElementById('grams').value) || 0;
+                var discountPercentage = parseFloat(document.getElementById('discountPercentage').value) || 0;
+                var discountRupees = parseFloat(document.getElementById('discountRupees').value) || 0;
+
+                var totalAmount = (price * grams) - ((price * grams * discountPercentage) / 100) - discountRupees;
+                
+                document.getElementById('totalAmount').innerText = "Total Amount: Rs " + totalAmount.toFixed(2);
+            }
+        </script>
+    </div> 
+</body>
+</html>
